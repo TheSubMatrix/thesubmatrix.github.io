@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colin Whiteford | Technical Artist & Game Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --tech-green: #4ade80;
+            --tech-blue: #3b82f6;
+            --dark-bg: #0f172a;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .tech-gradient-text {
+            background: linear-gradient(to right, var(--tech-green), var(--tech-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 222, 128, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-glass:hover {
+            border-color: rgba(74, 222, 128, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+        }
+
+        .skill-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--tech-blue);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+        }
+
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(74, 222, 128, 0);
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+        }
+
+        .code-font {
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(74, 222, 128, 0.3), transparent);
+        }
+    </style>
+</head>
+<body class="selection:bg-green-500/30">
+
+<!-- Navigation -->
+<nav class="fixed w-full z-50 px-6 py-4 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold code-font">
+            <span class="text-green-400">&lt;</span>CW <span class="text-blue-400">/&gt;</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+            <a href="#about" class="hover:text-green-400 transition">About</a>
+            <a href="#work" class="hover:text-green-400 transition">Work</a>
+            <a href="#stack" class="hover:text-green-400 transition">Stack</a>
+            <a href="#contact" class="hover:text-green-400 transition">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="about" class="pt-32 pb-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block px-3 py-1 mb-6 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold tracking-widest uppercase">
+            Unity & Unreal Engine Specialist
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+            Colin Whiteford
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 tech-gradient-text">
+            Technical Artist & Game Developer
+        </h2>
+        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+            Bridging the gap between art and code. Specializing in custom shading, editor tooling, and high-performance systems' architecture.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="resume.pdf" download class="glow-button bg-green-500 hover:bg-green-400 text-slate-950 px-8 py-3 rounded-lg font-bold flex items-center">
+                <i class="fas fa-file-download mr-2"></i> Download Resume
+            </a>
+            <div class="flex gap-4">
+                <a href="https://github.com/YOUR_USERNAME" target="_blank" class="p-3 rounded-lg border border-slate-700 hover:bg-slate-800 transition">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" class="p-3 rounded-lg border border-slate-700 hover:bg-slate-800 transition">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Selected Work -->
+<section id="work" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Project: Shaders -->
+        <div class="card-glass rounded-2xl overflow-hidden p-6 flex flex-col">
+            <div class="h-48 bg-slate-800 rounded-xl mb-6 flex items-center justify-center border border-slate-700">
+                <i class="fas fa-magic text-5xl text-blue-400/50"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Custom Shaders & LookDev</h3>
+            <p class="text-slate-400 text-sm mb-6 flex-grow">
+                Custom HLSL shading models including painterly styles, reactive water, and optimized VFX for cross-platform titles.
+            </p>
+            <a href="shaders.html" class="text-green-400 font-mono text-sm hover:underline flex items-center group">
+                EXPLORE SHADERS <i class="fas fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+            </a>
+        </div>
+
+        <!-- Project: Unity Tools -->
+        <div class="card-glass rounded-2xl overflow-hidden p-6 flex flex-col">
+            <div class="h-48 bg-slate-800 rounded-xl mb-6 flex items-center justify-center border border-slate-700">
+                <i class="fas fa-tools text-5xl text-green-400/50"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Unity Editor Tooling</h3>
+            <p class="text-slate-400 text-sm mb-6 flex-grow">
+                Workflow automation and bespoke editor extensions designed to accelerate production pipelines for artists.
+            </p>
+            <a href="tools.html" class="text-green-400 font-mono text-sm hover:underline flex items-center group">
+                VIEW TOOLSET <i class="fas fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+            </a>
+        </div>
+
+        <!-- Project: Systems -->
+        <div class="card-glass rounded-2xl overflow-hidden p-6 md:col-span-2">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-1 h-full min-h-[150px] bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700">
+                    <i class="fas fa-microchip text-5xl text-blue-400/50"></i>
+                </div>
+                <div class="md:col-span-2 flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">C# & C++ Systems Architecture</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow">
+                        High-performance gameplay systems, including multithreaded modular weapon frameworks and low-level optimization.
+                    </p>
+                    <a href="systems.html" class="text-green-400 font-mono text-sm hover:underline flex items-center mt-auto group">
+                        TECHNICAL BREAKDOWN <i class="fas fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Stack -->
+<section id="stack" class="py-20 px-6 bg-slate-900/50 border-y border-slate-800">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 flex items-center justify-center">
+            Technical Stack
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <div>
+                <h4 class="text-green-400 font-mono text-sm mb-4 uppercase tracking-widest">Programming</h4>
+                <ul class="space-y-3 text-slate-300">
+                    <li>C# & .NET / C++</li>
+                    <li>HLSL / GLSL Shaders</li>
+                    <li>Python Tooling</li>
+                    <li>Doxygen Docs</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-green-400 font-mono text-sm mb-4 uppercase tracking-widest">Engines</h4>
+                <ul class="space-y-3 text-slate-300">
+                    <li>Unity (URP/HDRP)</li>
+                    <li>Unreal Engine 5</li>
+                    <li>Custom Shader Graphs</li>
+                    <li>Multi-threaded Systems</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-green-400 font-mono text-sm mb-4 uppercase tracking-widest">Performance</h4>
+                <ul class="space-y-3 text-slate-300">
+                    <li>Mobile Optimization</li>
+                    <li>Draw Call Reduction</li>
+                    <li>Shader Profiling</li>
+                    <li>Memory Management</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pt-10 border-t border-slate-800">
+            <h4 class="text-center text-slate-500 font-mono text-xs uppercase tracking-[0.3em] mb-8">Software Toolkit</h4>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="skill-badge px-4 py-2 rounded-lg">Unity</span>
+                <span class="skill-badge px-4 py-2 rounded-lg">Unreal Engine</span>
+                <span class="skill-badge px-4 py-2 rounded-lg">Git / Fork</span>
+                <span class="skill-badge px-4 py-2 rounded-lg">Rider / PyCharm</span>
+                <span class="skill-badge px-4 py-2 rounded-lg">VS Code / Visual Studio</span>
+                <span class="skill-badge px-4 py-2 rounded-lg">Substance Suite</span>
+                <span class="skill-badge px-4 py-2 rounded-lg">Maya / Blender</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<footer id="contact" class="py-20 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6">Let's build something.</h2>
+    <div class="flex flex-wrap justify-center gap-6 mb-12">
+        <a href="mailto:colinwhiteford516@gmail.com" class="text-xl font-bold hover:text-green-400 transition underline underline-offset-8 decoration-slate-700">
+            colinwhiteford516@gmail.com
+        </a>
+    </div>
+    <div class="flex justify-center space-x-6 text-slate-500">
+        <a href="https://github.com/thesubmatrix" target="_blank" class="hover:text-blue-400 transition"><i class="fab fa-github fa-lg"></i></a>
+        <a href="https://www.linkedin.com/in/colin-whiteford-14ab35180/" target="_blank" class="hover:text-blue-400 transition"><i class="fab fa-linkedin fa-lg"></i></a>
+    </div>
+    <p class="mt-12 text-xs text-slate-600 font-mono uppercase tracking-widest">
+        Colin Whiteford &copy; 2024
+    </p>
+</footer>
+
+</body>
+</html>

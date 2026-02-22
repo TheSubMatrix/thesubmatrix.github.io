@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail | Colin Whiteford</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --tech-green: #4ade80;
+            --tech-blue: #3b82f6;
+            --dark-bg: #0f172a;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+        }
+
+        .tech-gradient-text {
+            background: linear-gradient(to right, var(--tech-green), var(--tech-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .code-block {
+            background: #1e293b;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid rgba(74, 222, 128, 0.1);
+            overflow-x: auto;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+        }
+
+        .spec-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--tech-blue);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="selection:bg-green-500/30 pb-20">
+
+<!-- Sticky Navigation -->
+<nav class="fixed w-full z-50 px-6 py-4 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-slate-400 hover:text-white transition flex items-center group">
+            <i class="fas fa-arrow-left mr-2 transition-transform group-hover:-translate-x-1"></i>
+            <span class="font-mono text-sm uppercase tracking-widest">Back to Portfolio</span>
+        </a>
+        <div class="text-xl font-bold font-mono">
+            <span class="text-green-400">&lt;</span>CW <span class="text-blue-400">/&gt;</span>
+        </div>
+    </div>
+</nav>
+
+<!-- Project Header -->
+<header class="pt-32 pb-12 px-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="spec-tag">Unity URP</span>
+            <span class="spec-tag">HLSL</span>
+            <span class="spec-tag">Optimization</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+            Project Title <span class="tech-gradient-text">Breakdown</span>
+        </h1>
+        <p class="text-slate-400 text-lg md:text-xl max-w-3xl">
+            A high-level summary of the technical challenges addressed and the solutions implemented during this project's development.
+        </p>
+    </div>
+</header>
+
+<!-- Main Content Area -->
+<main class="px-6">
+    <div class="max-w-5xl mx-auto space-y-20">
+
+        <!-- Visual Showcase -->
+        <section class="image-placeholder">
+            <div class="text-center">
+                <i class="fas fa-play-circle text-6xl text-slate-700 mb-4 block"></i>
+                <span class="text-slate-500 font-mono text-sm uppercase">Main Project Showcase (Video/GIF)</span>
+            </div>
+        </section>
+
+        <!-- Grid Layout for Specs -->
+        <section class="grid md:grid-cols-3 gap-12 border-t border-slate-800 pt-12">
+            <div class="md:col-span-2 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-bullseye text-green-400 mr-3"></i> The Challenge
+                    </h2>
+                    <p class="text-slate-400">
+                        Describe the specific problem here. For example: "The existing rendering pipeline was unable to handle complex transparency for stylized water while maintaining a 60fps target on mobile devices."
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-code-branch text-blue-400 mr-3"></i> Implementation
+                    </h2>
+                    <p class="text-slate-400 mb-6">
+                        Detail your solution. Mention specific techniques like Vertex Displacement, Custom Editor Windows, or using the C# Job System for performance.
+                    </p>
+
+                    <!-- Code Snippet Placeholder -->
+                    <div class="code-block">
+                        <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-2">
+                            <span class="text-xs text-slate-500 font-mono">ExampleImplementation.hlsl</span>
+                            <i class="fas fa-copy text-slate-600"></i>
+                        </div>
+                        <pre class="text-sm text-blue-300"><code>// Example shader logic
+half4 Frag(Varyings input) : SV_Target {
+    float2 uv = input.uv;
+    float noise = tex2D(_NoiseTex, uv + _Time.x).r;
+    return lerp(_ColorA, _ColorB, noise);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Info -->
+            <aside class="space-y-8">
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                    <h3 class="font-bold text-sm uppercase tracking-widest text-slate-500 mb-4">Key Results</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-bolt text-yellow-400 mr-3"></i> 40% Draw Call Reduction
+                        </li>
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-mobile-alt text-blue-400 mr-3"></i> Stable 60FPS on Mobile
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="p-6">
+                    <h3 class="font-bold text-sm uppercase tracking-widest text-slate-500 mb-4">Software Used</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-800 px-2 py-1 rounded">Unity</span>
+                        <span class="text-xs bg-slate-800 px-2 py-1 rounded">Rider</span>
+                        <span class="text-xs bg-slate-800 px-2 py-1 rounded">RenderDoc</span>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <section class="border-t border-slate-800 pt-12 flex justify-between items-center">
+            <a href="index.html" class="text-slate-400 hover:text-white transition font-mono text-sm uppercase">
+                &larr; Previous Project
+            </a>
+            <a href="index.html" class="text-slate-400 hover:text-white transition font-mono text-sm uppercase">
+                Next Project &rarr;
+            </a>
+        </section>
+    </div>
+</main>
+
+<!-- Simple Footer -->
+<footer class="mt-20 py-10 border-t border-slate-900 text-center">
+    <p class="text-slate-600 text-xs font-mono uppercase tracking-widest">
+        Colin Whiteford &copy; 2024
+    </p>
+</footer>
+
+</body>
+</html>
