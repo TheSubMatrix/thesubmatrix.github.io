@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Projects | Colin Whiteford</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --tech-green: #4ade80;
+            --tech-blue: #3b82f6;
+            --dark-bg: #0f172a;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        .tech-gradient-text {
+            background: linear-gradient(to right, var(--tech-green), var(--tech-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-glass {
+            background: rgba(51, 65, 85, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-glass:hover {
+            border-color: rgba(74, 222, 128, 0.4);
+            background: rgba(51, 65, 85, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--tech-blue);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -8px;
+            left: 0;
+            background-color: var(--tech-green);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link.active {
+            color: white;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(74, 222, 128, 0.3), transparent);
+        }
+
+        .filter-btn {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-btn.active {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: var(--tech-green);
+            color: var(--tech-green);
+        }
+
+        .hover-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--tech-green);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .group:hover .hover-underline::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="selection:bg-green-500/30">
+
+<!-- Navigation (Matched to Home Page) -->
+<nav class="fixed w-full z-50 px-6 py-4 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold code-font">
+            <span class="text-green-400">&lt;</span>CW <span class="text-blue-400">/&gt;</span>
+        </a>
+        <div class="hidden md:flex space-x-8 text-sm font-mono uppercase tracking-widest text-slate-400">
+            <a href="index.html" class="nav-link">About</a>
+            <a href="projects.html" class="nav-link active">Work</a>
+            <a href="mailto:colinwhiteford516@gmail.com" class="nav-link">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Header Section -->
+<header class="pt-48 pb-12 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="text-center md:text-left">
+                <div class="inline-block px-3 py-1 mb-6 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold tracking-widest uppercase">
+                    Technical Case Studies
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
+                    Project <span class="tech-gradient-text">Catalog</span>
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed">
+                    A deep dive into specialized implementations. Filter by category to explore specific technical domains.
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Filter Bar -->
+<section class="px-6 mb-12">
+    <div class="max-w-6xl mx-auto flex flex-wrap gap-3">
+        <button onclick="filterProjects('all')" class="filter-btn active px-6 py-2 rounded-full text-sm font-mono uppercase tracking-wider" data-filter="all">All</button>
+        <button onclick="filterProjects('shaders')" class="filter-btn px-6 py-2 rounded-full text-sm font-mono uppercase tracking-wider" data-filter="shaders">Shaders</button>
+        <button onclick="filterProjects('tools')" class="filter-btn px-6 py-2 rounded-full text-sm font-mono uppercase tracking-wider" data-filter="tools">Unity Tooling</button>
+        <button onclick="filterProjects('systems')" class="filter-btn px-6 py-2 rounded-full text-sm font-mono uppercase tracking-wider" data-filter="systems">Systems</button>
+    </div>
+</section>
+
+<div class="section-divider mb-16"></div>
+
+<!-- Project Grid -->
+<main class="px-6 pb-24">
+    <div id="project-grid" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Project Card 1: Shaders -->
+        <a href="shaders.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
+            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
+                <i class="fas fa-wind text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-green-400/50"></i>
+            </div>
+            <div class="p-8 flex-grow flex flex-col">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="skill-badge px-2 py-1 rounded">HLSL / URP</span>
+                    <span class="text-slate-500 text-xs code-font">2023</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Interactive Foliage</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                    Vertex-based wind and collision reaction shaders optimized for high-density forest environments in Unity.
+                </p>
+                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
+                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Project Card 2: Shaders -->
+        <a href="shaders.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
+            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
+                <i class="fas fa-water text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-blue-400/50"></i>
+            </div>
+            <div class="p-8 flex-grow flex flex-col">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="skill-badge px-2 py-1 rounded">Compute</span>
+                    <span class="text-slate-500 text-xs code-font">2023</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Stylized Fluid Dynamics</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                    Real-time ripple generation and foam masking using a lightweight custom render pass and GPGPU techniques.
+                </p>
+                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
+                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Project Card 3: Tools -->
+        <a href="tools.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="tools">
+            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
+                <i class="fas fa-project-diagram text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-purple-400/50"></i>
+            </div>
+            <div class="p-8 flex-grow flex flex-col">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="skill-badge px-2 py-1 rounded">Editor Tooling</span>
+                    <span class="text-slate-500 text-xs code-font">2024</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Shader Graph Library</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                    Custom nodes and subgraphs for rapid painterly LookDev within the Unity standard editor environment.
+                </p>
+                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
+                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Project Card 4: Systems -->
+        <a href="systems.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="systems">
+            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
+                <i class="fas fa-microchip text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-orange-400/50"></i>
+            </div>
+            <div class="p-8 flex-grow flex flex-col">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="skill-badge px-2 py-1 rounded">C# / DOTS</span>
+                    <span class="text-slate-500 text-xs code-font">2024</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">ECS Crowd Simulation</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                    Massive-scale agent simulation utilizing Unity's Data-Oriented Technology Stack for high-performance throughput.
+                </p>
+                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
+                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="py-24 px-6 text-center border-t border-slate-800">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex justify-center space-x-8 mb-16">
+            <a href="https://github.com/thesubmatrix" target="_blank" class="text-slate-500 hover:text-white transition text-2xl">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/colin-whiteford-14ab35180/" target="_blank" class="text-slate-500 hover:text-white transition text-2xl">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+
+        <p class="text-slate-600 text-xs code-font uppercase tracking-widest">
+            Colin Whiteford &copy; 2024
+        </p>
+    </div>
+</footer>
+
+<script>
+    function filterProjects(category) {
+        // Update buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-filter') === category) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Filter cards
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    // Initialize from URL parameter if exists
+    window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type');
+        if (type) filterProjects(type);
+    };
+</script>
+
+</body>
+</html>
