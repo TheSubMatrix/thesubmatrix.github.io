@@ -98,44 +98,50 @@
             color: var(--tech-green);
         }
 
-        .hover-underline {
-            position: relative;
-            display: inline-block;
-        }
-
-        .hover-underline::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--tech-green);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        .group:hover .hover-underline::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
         .project-card.hidden {
             display: none;
         }
 
-        /* Standardized Section Container - Matched to Index */
         .content-container {
             max-width: 1100px;
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* The video itself acts as the thumbnail by showing frame 0 */
+        .project-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            z-index: 4;
+            /* Ensure it is visible even before playing */
+            opacity: 1;
+        }
+
+        .project-card:hover .project-video {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="selection:bg-green-500/30">
 
-<!-- Navigation (Standardized) -->
+<!-- Navigation -->
 <nav class="fixed w-full z-50 px-6 py-4 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
     <div class="content-container flex justify-between items-center">
         <a href="index.html" class="text-xl font-bold code-font">
@@ -149,7 +155,7 @@
     </div>
 </nav>
 
-<!-- Header Section (Standardized & Centered) -->
+<!-- Header -->
 <header class="pt-48 pb-12 px-6">
     <div class="content-container text-center flex flex-col items-center">
         <div class="inline-block px-3 py-1 mb-8 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold tracking-widest uppercase">
@@ -164,7 +170,7 @@
     </div>
 </header>
 
-<!-- Filter Bar (Centered) -->
+<!-- Filter Bar -->
 <section class="px-6 mb-16">
     <div class="content-container flex flex-wrap justify-center gap-4">
         <button onclick="filterProjects('all')" class="filter-btn active px-8 py-2.5 rounded-full text-sm font-mono uppercase tracking-wider" data-filter="all">All</button>
@@ -176,94 +182,77 @@
 
 <div class="section-divider mb-20"></div>
 
-<!-- Project Grid (Standardized Width) -->
+<!-- Project Grid -->
 <main class="px-6 pb-24">
     <div id="project-grid" class="content-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Project Card 1: Shaders -->
-        <a href="shaders.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
-            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
-                <i class="fas fa-wind text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-green-400/50"></i>
+        <!-- Project Card 1: Hologram and Raymarched Volumetrics -->
+        <a class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
+            <div class="aspect-video bg-slate-800/40 border-b border-slate-700/30 overflow-hidden relative">
+                <div class="video-container">
+                    <video class="project-video" muted loop playsinline preload="metadata">
+                        <source src="Videos/Hologram and Raymarched Volumetrics Test.mp4#t=0.001" type="video/mp4">
+                    </video>
+                </div>
             </div>
             <div class="p-8 flex-grow flex flex-col">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="skill-badge px-2 py-1 rounded">HLSL / URP</span>
+                    <span class="skill-badge px-2 py-1 rounded">Shaders</span>
                     <span class="text-slate-500 text-xs code-font">2023</span>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Interactive Foliage</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                    Vertex-based wind and collision reaction shaders optimized for high-density forest environments in Unity.
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Hologram Shader and Raymarched Volumetrics</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                    A custom animated glitchy hologram shader and raymarched volumetric shader that uses a 3D texture
                 </p>
-                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
-                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
-                </div>
             </div>
         </a>
 
-        <!-- Project Card 2: Shaders -->
-        <a href="shaders.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
-            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
-                <i class="fas fa-water text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-blue-400/50"></i>
+        <!-- Project Card 2: Portal Shader -->
+        <a class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
+            <div class="aspect-video bg-slate-800/40 border-b border-slate-700/30 overflow-hidden relative">
+                <div class="video-container">
+                    <video class="project-video" muted loop playsinline preload="metadata">
+                        <source src="Videos/Portal and Grass Shader.mp4#t=0.001" type="video/mp4">
+                    </video>
+                </div>
             </div>
             <div class="p-8 flex-grow flex flex-col">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="skill-badge px-2 py-1 rounded">Compute</span>
+                    <span class="skill-badge px-2 py-1 rounded">Shaders</span>
                     <span class="text-slate-500 text-xs code-font">2023</span>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Stylized Fluid Dynamics</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                    Real-time ripple generation and foam masking using a lightweight custom render pass and GPGPU techniques.
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Custom Portal Shader and Effect</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                    Uses a simple mesh cone with a custom shader to emulate a portal effect.
                 </p>
-                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
-                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
-                </div>
             </div>
         </a>
 
-        <!-- Project Card 3: Tools -->
-        <a href="tools.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="tools">
-            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
-                <i class="fas fa-project-diagram text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-purple-400/50"></i>
+        <!-- Project Card 3: Bubble Shield -->
+        <a class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="shaders">
+            <div class="aspect-video bg-slate-800/40 border-b border-slate-700/30 overflow-hidden relative">
+                <div class="video-container">
+                    <video class="project-video" muted loop playsinline preload="metadata">
+                        <source src="Videos/Bubble Shield Test 1.mp4#t=0.001" type="video/mp4">
+                    </video>
+                </div>
             </div>
             <div class="p-8 flex-grow flex flex-col">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="skill-badge px-2 py-1 rounded">Editor Tooling</span>
-                    <span class="text-slate-500 text-xs code-font">2024</span>
+                    <span class="skill-badge px-2 py-1 rounded">Shaders</span>
+                    <span class="text-slate-500 text-xs code-font">2023</span>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Shader Graph Library</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                    Custom nodes and subgraphs for rapid painterly LookDev within the Unity standard editor environment.
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">Reactive Bubble Shield Shader</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                    A bubble shield shader that reacts to object interactions via deformation
                 </p>
-                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
-                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Project Card 4: Systems -->
-        <a href="systems.html" class="project-card card-glass rounded-2xl overflow-hidden group flex flex-col" data-category="systems">
-            <div class="aspect-video bg-slate-800/40 flex items-center justify-center border-b border-slate-700/30 overflow-hidden">
-                <i class="fas fa-microchip text-4xl text-slate-500 transition-transform group-hover:scale-110 group-hover:text-orange-400/50"></i>
-            </div>
-            <div class="p-8 flex-grow flex flex-col">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="skill-badge px-2 py-1 rounded">C# / DOTS</span>
-                    <span class="text-slate-500 text-xs code-font">2024</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 group-hover:text-green-400 transition">ECS Crowd Simulation</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                    Massive-scale agent simulation utilizing Unity's Data-Oriented Technology Stack for high-performance throughput.
-                </p>
-                <div class="text-green-400 code-font text-xs uppercase tracking-widest flex items-center">
-                    <span class="hover-underline">EXPLORE PROJECT</span> <i class="fas fa-arrow-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
-                </div>
             </div>
         </a>
 
     </div>
 </main>
 
-<!-- Footer (Standardized) -->
+<!-- Footer -->
 <footer class="py-24 px-6 text-center border-t border-slate-800">
     <div class="content-container">
         <div class="flex justify-center space-x-12 mb-10">
@@ -274,7 +263,6 @@
                 <i class="fab fa-linkedin"></i>
             </a>
         </div>
-
         <p class="text-slate-600 text-xs code-font uppercase tracking-widest">
             Colin Whiteford &copy; 2024
         </p>
@@ -282,8 +270,8 @@
 </footer>
 
 <script>
+    // Project filtering logic
     function filterProjects(category) {
-        // Update buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
             if (btn.getAttribute('data-filter') === category) {
@@ -291,7 +279,6 @@
             }
         });
 
-        // Filter cards
         const cards = document.querySelectorAll('.project-card');
         cards.forEach(card => {
             if (category === 'all' || card.getAttribute('data-category') === category) {
@@ -302,11 +289,47 @@
         });
     }
 
-    // Initialize from URL parameter if exists
+    // Video hover playback logic
+    function initVideoHovers() {
+        const cards = document.querySelectorAll('.project-card');
+
+        cards.forEach(card => {
+            const video = card.querySelector('.project-video');
+
+            if (video) {
+                // Ensure the video is properly initialized for autoplay-on-hover
+                video.muted = true;
+
+                card.addEventListener('mouseenter', () => {
+                    // Reset to start if it was finished
+                    if (video.ended) video.currentTime = 0;
+
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            // If suspended/interrupted, try to load and play again
+                            video.load();
+                            video.play().catch(e => console.warn("Hover play failed:", e));
+                        });
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // Use a slight check to avoid errors if pause() is called during a play() load
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                });
+            }
+        });
+    }
+
     window.onload = () => {
         const params = new URLSearchParams(window.location.search);
         const type = params.get('type');
         if (type) filterProjects(type);
+
+        initVideoHovers();
     };
 </script>
 
